@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.quanlyloaisach.QuanLyLoaiSachFragment">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginHorizontal="20dp"
+        app:cardCornerRadius="26dp"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                />
+            <TextView
+                android:id="@+id/tvThem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sửa thủ thư"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:padding="20dp"/>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_below="@id/tvThem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                >
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_tenTV"
+
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_tenTV"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Tên thành viên" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_sdt"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_sdt"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Số điện thoại" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_email"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_email"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Email"
+
+
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_diaChi"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_diaChi"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Địa chỉ"
+
+
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_hoanTat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_button_red"
+                        android:text="Hoàn tất"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="40dp"
+                        android:layout_marginBottom="40dp"
+                        android:layout_marginHorizontal="10dp"
+                        />
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
+
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</RelativeLayout>

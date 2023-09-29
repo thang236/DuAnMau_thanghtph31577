@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.quanlyloaisach.QuanLyLoaiSachFragment">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginHorizontal="20dp"
+        app:cardCornerRadius="26dp"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                />
+
+            <TextView
+                android:id="@+id/tvThem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="Sửa sach"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_below="@id/tvThem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                >
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_tenSach"
+
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_tenSach"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Tên sách" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_soLuong"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_soLuong"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Số lượng" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_gia"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_gia"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Giá sách" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_loaiSach"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_loaiSach"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Loại Sách"
+                            android:inputType="none"
+                            android:clickable="false"
+                            android:focusable="false"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_TG"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_TG"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Tác giả" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_moTa"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_moTa"
+                            android:layout_width="match_parent"
+                            android:minLines="3"
+                            android:gravity="top"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:hint="Mô tả" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp">
+                        <TextView
+                            android:id="@+id/txtTrangThai"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Trạng thái hoạt động"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            />
+                        <Switch
+                            android:id="@+id/sw_trangThai"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="150dp"/>
+
+                    </LinearLayout>
+
+
+
+
+                    <ImageView
+                        android:id="@+id/card_picker_camera"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/ic_background_image"
+                        android:scaleType="center"
+                        android:src="@drawable/ic_camera" />
+
+
+
+
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_hoanTat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_button_red"
+                        android:text="Hoàn tất"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="40dp"
+                        android:layout_marginHorizontal="10dp"
+                        />
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
+
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</RelativeLayout>

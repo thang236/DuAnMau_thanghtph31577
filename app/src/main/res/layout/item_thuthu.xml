@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.quanlyloaisach.QuanLyLoaiSachFragment"
+    android:gravity="center"
+    app:cardBackgroundColor="#E8E8E8"
+    android:layout_marginBottom="14dp"
+    app:cardCornerRadius="13dp"
+    app:cardElevation="0dp"
+    app:contentPadding="1dp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginStart="5dp"
+        >
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_account"
+            android:text="Hoàng Tiến Thăng"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/tv_sdt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_phone"
+            android:layout_below="@id/tv_name"
+            android:layout_marginTop="7dp"
+            android:textSize="18sp"
+            android:drawablePadding="5dp"
+            android:text="Số điện thoại"
+            />
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_email"
+            android:layout_below="@id/tv_sdt"
+            android:layout_marginTop="7dp"
+            android:textSize="18sp"
+            android:text="Hà nội"
+            />
+
+        <TextView
+            android:id="@+id/tv_diaChi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_home"
+            android:layout_below="@id/tv_email"
+            android:layout_marginTop="7dp"
+            android:textSize="18sp"
+            android:text="Hà nội"
+            />
+
+
+
+
+
+        <ImageButton
+            android:id="@+id/btn_chucNang"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:src="@drawable/ic_handle"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="20dp"
+            />
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+</androidx.cardview.widget.CardView>

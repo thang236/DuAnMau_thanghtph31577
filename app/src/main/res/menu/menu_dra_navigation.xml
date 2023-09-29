@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="
+">
+        <menu>
+
+        </menu>
+    </item>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/main"
+            android:icon="@drawable/ic_home"
+            android:title="Màn hình chính"/>
+        <item
+            android:id="@+id/loaiSach"
+            android:icon="@drawable/ic_list"
+            android:title="Quản lý loại sách"
+            />
+        <item
+            android:id="@+id/sach"
+            android:icon="@drawable/ic_book"
+            android:title="Quản lý sách"/>
+        <item
+            android:id="@+id/thanhVien"
+            android:icon="@drawable/ic_people"
+            android:title="Quản lý thành viên"/>
+        <item
+            android:id="@+id/phieu"
+            android:icon="@drawable/ic_phieu"
+            android:title="Quản lý phiếu mượn"/>
+        <item
+            android:id="@+id/thuThu"
+            android:icon="@drawable/ic_thuthu"
+            android:title="Quản lý thủ thư"/>
+        <item
+            android:id="@+id/thongKe"
+            android:icon="@drawable/ic_bar_chart"
+            android:title="Thống kê"/>
+    </group>
+
+
+
+
+
+</menu>
