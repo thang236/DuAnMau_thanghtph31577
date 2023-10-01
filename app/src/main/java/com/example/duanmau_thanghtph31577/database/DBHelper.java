@@ -25,7 +25,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String thanhVien = "CREATE TABLE ThanhVien (idTV INTEGER PRIMARY KEY AUTOINCREMENT, tenTV TEXT, soDT INTEGER, email TEXT, diaChi TEXT)";
         db.execSQL(thanhVien);
 
-        String pM = "CREATE TABLE PhieuMuon (idPM INTEGER PRIMARY KEY AUTOINCREMENT, tenSach TEXT, ngayTra TEXT, ngayMuon TEXT, gia, tenTV)";
+        String pM = "CREATE TABLE PhieuMuon (idPM INTEGER PRIMARY KEY AUTOINCREMENT, tenSach TEXT, ngayTra TEXT, ngayMuon TEXT, soLuong INTEGER ,gia INTEGER, tenTV TEXT)";
         db.execSQL(pM);
 
         String thuThu = "CREATE TABLE ThuThu (idTT INTEGER PRIMARY KEY AUTOINCREMENT, tenTT TEXT, soDT INTEGER, email TEXT, diaChi TEXT, username TEXT)";

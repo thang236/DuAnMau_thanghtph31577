@@ -3,16 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:overScrollMode="never"
+    android:background="@android:color/transparent"
+    android:scrollbars="none">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/TabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        app:tabIndicatorColor="@color/black"
-        app:tabSelectedTextColor="@color/black"/>
+
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+
+        app:tabBackground="@drawable/custom_tablayout"
+        app:tabSelectedTextColor="@color/white"
+        app:tabGravity="center"
+
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="scrollable"
+
+        app:tabTextColor="@color/black"
+        app:tabUnboundedRipple="false"
+        />
+
+
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/ViewPager"
