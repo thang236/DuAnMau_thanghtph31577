@@ -1,11 +1,16 @@
 package com.example.duanmau_thanghtph31577.fragment.quanlythanhvien;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +63,26 @@ public class QuanLyThanhVienFragment extends Fragment implements ThanhVienAdapte
     }
 
     private void listener() {
+        binding.edTimKiemThanhVien.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    adapter.getFilter().filter(s);
+                }catch (Exception e) {
+                    Log.d("TAG", "onTextChanged: loi search"+ e.getMessage());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         binding.btnAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +125,30 @@ public class QuanLyThanhVienFragment extends Fragment implements ThanhVienAdapte
         });
         builder.show();
 
+
+    }
+
+    @Override
+    public void goiClick(String sdt) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Bạn có muốn gọi không ?");
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Uri phoneUri = Uri.parse("tel:" + sdt);
+                Intent intent = new Intent(Intent.ACTION_DIAL, phoneUri);
+                startActivity(intent);
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setNegativeButton("không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+
+            }
+        });
+        builder.show();
 
     }
 }

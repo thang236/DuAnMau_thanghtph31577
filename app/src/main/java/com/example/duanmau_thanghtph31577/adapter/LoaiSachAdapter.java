@@ -7,20 +7,25 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duanmau_thanghtph31577.databinding.DiaglogChucnangBinding;
 import com.example.duanmau_thanghtph31577.databinding.ItemLoaisachBinding;
+import com.example.duanmau_thanghtph31577.filters.FilterSearchBook;
+import com.example.duanmau_thanghtph31577.filters.FilterSearchCategory;
 import com.example.duanmau_thanghtph31577.model.LoaiSachModel;
 
 import java.util.ArrayList;
 
 public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<LoaiSachModel> loaiSachModelArrayList;
+    public ArrayList<LoaiSachModel> loaiSachModelArrayList, list;
     private ChucNanginterfaceLoaiSach chucNanginterfaceLoaiSach;
+
+    private FilterSearchCategory filterSearchCategory;
 
 
 
@@ -28,6 +33,13 @@ public class LoaiSachAdapter extends RecyclerView.Adapter<LoaiSachAdapter.ViewHo
         this.context = context;
         this.loaiSachModelArrayList = loaiSachModelArrayList;
         this.chucNanginterfaceLoaiSach = chucNanginterfaceLoaiSach;
+        this.list = loaiSachModelArrayList;
+    }
+    public Filter getFilter() {
+        if (filterSearchCategory == null){
+            filterSearchCategory = new FilterSearchCategory(list ,this);
+        }
+        return filterSearchCategory;
     }
     public interface ChucNanginterfaceLoaiSach {
         void update(int id);

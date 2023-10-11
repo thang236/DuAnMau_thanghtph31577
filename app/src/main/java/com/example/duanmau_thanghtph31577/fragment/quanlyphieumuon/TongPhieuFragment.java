@@ -1,66 +1,160 @@
 package com.example.duanmau_thanghtph31577.fragment.quanlyphieumuon;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.duanmau_thanghtph31577.R;
+import com.example.duanmau_thanghtph31577.adapter.LoaiSachAdapter;
+import com.example.duanmau_thanghtph31577.adapter.PhieuAdapter;
+import com.example.duanmau_thanghtph31577.controller.PhieuDao;
+import com.example.duanmau_thanghtph31577.databinding.FragmentTongPhieuBinding;
+import com.example.duanmau_thanghtph31577.fragment.quanlysach.SuaSachFragment;
+import com.example.duanmau_thanghtph31577.model.PhieuModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TongPhieuFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class TongPhieuFragment extends Fragment {
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class TongPhieuFragment extends Fragment implements PhieuAdapter.ChucNanginterfacePhieu{
+    FragmentTongPhieuBinding binding;
+    ArrayList<PhieuModel> arrayList;
+    PhieuDao dao;
+    PhieuAdapter adapter;
+    PhieuAdapter.ChucNanginterfacePhieu chucNanginterfacePhieu;
+    int trangThaic = 0;
 
-    public TongPhieuFragment() {
-        // Required empty public constructor
-    }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TongPhieuFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TongPhieuFragment newInstance(String param1, String param2) {
-        TongPhieuFragment fragment = new TongPhieuFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tong_phieu, container, false);
+        binding = FragmentTongPhieuBinding.inflate(inflater, container, false);
+        dao = new PhieuDao(getContext());
+        chucNanginterfacePhieu = this;
+        loadDataFromSQL();
+        refresh();
+
+
+
+        return binding.getRoot();
     }
+
+    private void  refresh() {
+        binding.swiperefreshlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadDataFromSQL();
+                binding.swiperefreshlayout.setRefreshing(false);
+            }
+        });
+    }
+
+    private void loadDataFromSQL() {
+        arrayList = dao.getListALL();
+        chinhTrangThai();
+        arrayList = dao.getListALL();
+        adapter = new PhieuAdapter(getContext(), arrayList, chucNanginterfacePhieu);
+        binding.rcvPm.setAdapter(adapter);
+
+    }
+    private void  chinhTrangThai() {
+        Calendar calendar = Calendar.getInstance();
+        Date currentDate = calendar.getTime(); // Ép kiểu Calendar thành Date
+
+            // Định dạng cho chuỗi ngày tháng
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        for (int i = 0; i < arrayList.size(); i++) {
+            try {
+                // Ép kiểu chuỗi thành đối tượng Date
+                Date date = dateFormat.parse(arrayList.get(i).getNgayTra());
+                if (currentDate.compareTo(date) >0 ) {
+                    if (arrayList.get(i).getTrangThai() != 1 ) {
+                        arrayList.get(i).setTrangThai(2);
+                        Log.e("TAG", "chinhTrangThai: " + i );
+                        dao.updateTrangThaiTraSachchinh(arrayList.get(i).getId(), 2);
+                    }
+
+                }else {
+                    if (arrayList.get(i).getTrangThai() != 1 ) {
+                        dao.updateTrangThaiTraSachchinh(arrayList.get(i).getId(), 0);
+                    }
+
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+
+    @Override
+    public void traSach(int id) {
+        dao.updateTrangThaiTraSachchinh(id, 1);
+        Toast.makeText(getContext(), "Trả sách thành công", Toast.LENGTH_SHORT).show();
+        loadDataFromSQL();
+    }
+
+    @Override
+    public void update(int id) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", id);
+        SuaPhieuFragment suaPhieuFragment = new SuaPhieuFragment();
+        suaPhieuFragment.setArguments(bundle);
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, suaPhieuFragment).addToBackStack(null).commit();
+        loadDataFromSQL();
+
+    }
+
+    @Override
+    public void delete(int id) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Bạn có chắc muốn xóa không ?");
+        builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dao.removePhieu(id);
+                Toast.makeText(getContext(), "Xoá thành công", Toast.LENGTH_SHORT).show();
+                loadDataFromSQL();
+                dialogInterface.dismiss();
+            }
+        });
+        builder.setNegativeButton("không", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getContext(), "Bạn chọn không xóa", Toast.LENGTH_SHORT).show();
+                dialogInterface.dismiss();
+
+            }
+        });
+        builder.show();
+
+    }
+
+
 }

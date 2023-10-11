@@ -14,6 +14,9 @@ import com.example.duanmau_thanghtph31577.R;
 import com.example.duanmau_thanghtph31577.controller.AccountDao;
 import com.example.duanmau_thanghtph31577.databinding.FragmentSignUpBinding;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class SignUpFragment extends Fragment {
     FragmentSignUpBinding binding;
@@ -73,6 +76,11 @@ public class SignUpFragment extends Fragment {
             binding.edEmail.requestFocus();
             return;
         }
+        if (!validateEmail(edEmail)){
+            binding.edEmail.setError("Vui lòng nhập đúng định dạng email");
+            binding.edEmail.requestFocus();
+            return;
+        }
         if (TextUtils.isEmpty(edPassword)){
             binding.edPassword.setError("Bạn cần nhập đủ thông tin");
             binding.edPassword.requestFocus();
@@ -90,5 +98,16 @@ public class SignUpFragment extends Fragment {
         accountDao.register(edUserName, edPassword, edname, edEmail);
         Toast.makeText(getContext(), "Đăng ký thành công", Toast.LENGTH_SHORT).show();
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new LoginFragment()).commit();
+    }
+
+    private static final String EMAIL_PATTERN =
+            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" +
+                    "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+    private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+
+    public static boolean validateEmail(final String email) {
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

@@ -5,11 +5,19 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+
+import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.example.duanmau_thanghtph31577.controller.AccountDao;
 import com.example.duanmau_thanghtph31577.databinding.ActivityMainBinding;
+import com.example.duanmau_thanghtph31577.fragment.ChangePasswordFragment;
 import com.example.duanmau_thanghtph31577.fragment.ManHinhChinhFragment;
 import com.example.duanmau_thanghtph31577.fragment.quanlyloaisach.QuanLyLoaiSachFragment;
 import com.example.duanmau_thanghtph31577.fragment.quanlyphieumuon.QuanLyPhieuMuon;
@@ -21,13 +29,30 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+    AccountDao dao;
+    String name;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        dao = new AccountDao(this);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String data = bundle.getString("key");
+             name = dao.getNameByUsername(data);
+        }
+
+
         setContentView(binding.getRoot());
         setNavi();
+        NavigationView navigationView = findViewById(R.id.navigationView);
+        View headerView = navigationView.getHeaderView(0);
+
+        TextView headerTextView = headerView.findViewById(R.id.tb_name);
+        headerTextView.setText("Xin chào" + name);
 
         setTitle("Trang chủ");
     }
@@ -49,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.main){
                     setTitle("Trang chủ");
                     fragment = new ManHinhChinhFragment();
-
                 } else if (item.getItemId() == R.id.loaiSach) {
                     setTitle("Quản lý loại sách");
                     fragment = new QuanLyLoaiSachFragment();
@@ -57,13 +81,25 @@ public class MainActivity extends AppCompatActivity {
                     setTitle("Quản lý sách");
                     fragment = new QuanLySachFragment();
                 }else if (item.getItemId() == R.id.thanhVien){
+                    setTitle("Quản lý thành viên");
                     fragment = new QuanLyThanhVienFragment();
                 }else if (item.getItemId() == R.id.phieu){
+                    setTitle("Quản lý phiếu muợn");
                     fragment = new QuanLyPhieuMuon();
                 }else if (item.getItemId() == R.id.thuThu){
+                    setTitle("Quản lý thủ thư");
                     fragment = new QuanLyThuThuFragment();
                 }else if (item.getItemId() == R.id.thongKe){
+                    setTitle("Thống kê");
                     fragment = new ThongKeFragment();
+                } else if (item.getItemId() == R.id.matkhau) {
+                    setTitle("Đổi mật khẩu");
+                    fragment = new ChangePasswordFragment();
+                } else if (item.getItemId() == R.id.loguot){
+                    Intent loginIntent = new Intent(MainActivity.this, Welcome.class);
+                    startActivity(loginIntent);
+                    Toast.makeText(MainActivity.this, "Đăng xuất thành công", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
@@ -72,4 +108,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

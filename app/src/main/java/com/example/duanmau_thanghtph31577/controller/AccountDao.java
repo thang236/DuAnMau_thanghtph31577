@@ -1,5 +1,6 @@
 package com.example.duanmau_thanghtph31577.controller;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -66,6 +67,39 @@ public class AccountDao {
         cv.put("password", newPassword);
         db.update("Account", cv, "username=?", new String[]{username});
         db.close();
+    }
+
+    @SuppressLint("Range")
+    public String getPasswordByUsername(String username) {
+        String password = null;
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT password FROM Account WHERE username=?", new String[]{username});
+        if (cursor.moveToFirst()) {
+            // Lấy mật khẩu từ cột "password" trong kết quả truy vấn
+            password = cursor.getString(cursor.getColumnIndex("password"));
+        }
+        cursor.close();
+        db.close();
+        return password;
+    }
+
+    @SuppressLint("Range")
+    public String getNameByUsername(String username) {
+        String name = null;
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String query = "SELECT name FROM Account WHERE username = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{username});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            name = cursor.getString(cursor.getColumnIndex("name"));
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        return name;
     }
 
 

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.quanlyloaisach.QuanLyLoaiSachFragment">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginHorizontal="20dp"
+        app:cardCornerRadius="26dp"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back"
+                android:background="@android:color/transparent"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                />
+            <TextView
+                android:id="@+id/tvThem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Thêm phiếu mượn"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:padding="20dp"/>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_below="@id/tvThem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_tenSach"
+
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_tenSach"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Tên sách mượn"
+                            android:inputType="none"
+                            android:clickable="false"
+                            android:focusable="false"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_ngayMuon"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_ngayMuon"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Ngày mượn"
+                            android:inputType="none"
+                            android:clickable="false"
+                            android:focusable="false"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_ngayTra"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_ngayTra"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Ngày trả"
+                            android:inputType="none"
+                            android:clickable="false"
+                            android:focusable="false"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/til_soLuong"
+                            android:layout_marginTop="20dp"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            >
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/ed_soLuong"
+                                android:layout_width="match_parent"
+                                android:layout_marginHorizontal="10dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:hint="Số lượng"
+                                android:text="1"
+                                android:inputType="none"
+                                android:clickable="false"
+                                android:focusable="false"/>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ImageButton
+                            android:id="@+id/btn_tru"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_remove"
+                            android:layout_marginTop="40dp"
+                            android:background="@android:color/transparent"
+                            android:layout_marginEnd="20dp"
+                            />
+                        <ImageButton
+                            android:id="@+id/btn_cong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_add"
+                            android:layout_marginTop="40dp"
+                            android:background="@android:color/transparent"
+                            android:layout_marginEnd="20dp"
+                            />
+                        <TextView
+                            android:id="@+id/tv_thieu_hang"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Thiếu hàng"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="@color/mau_do"
+                            android:layout_marginTop="10dp"
+                            android:visibility="gone"
+                            android:drawableStart="@drawable/warning"
+                            android:drawablePadding="10dp"/>
+
+
+                    </LinearLayout>
+
+
+
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_gia"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_gia"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Giá sách"
+                            android:inputType="none"
+                            android:clickable="false"
+                            android:focusable="false"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_TV"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_TV"
+                            android:layout_width="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:hint="Thành viên"
+                            android:inputType="none"
+                            android:clickable="false"
+                            android:focusable="false"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_hoanTat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/custom_button_red"
+                        android:text="Hoàn tất"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="40dp"
+                        android:layout_marginHorizontal="10dp"
+                        />
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
+
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+</RelativeLayout>

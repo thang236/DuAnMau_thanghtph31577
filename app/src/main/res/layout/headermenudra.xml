@@ -12,9 +12,10 @@
         android:layout_marginBottom="20sp"
         />
     <TextView
+        android:id="@+id/tb_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="xin Chào, Thăng"
+        android:text="Chào mừng đến với thư viện phương Nam"
         android:textStyle="bold"
         />
 

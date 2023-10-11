@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import com.example.duanmau_thanghtph31577.databinding.ActivityWelcomeBinding;
+import com.example.duanmau_thanghtph31577.fragment.login.SplashFragment;
 import com.example.duanmau_thanghtph31577.fragment.login.WelcomeFragment;
 
 public class Welcome extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class Welcome extends AppCompatActivity {
     private void replaceFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, new WelcomeFragment());
+        fragmentTransaction.replace(R.id.frameLayout, new SplashFragment());
         fragmentTransaction.commit();
     }
 }

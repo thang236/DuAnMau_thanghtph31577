@@ -1,22 +1,25 @@
 package com.example.duanmau_thanghtph31577.model;
 
+import java.util.Date;
+
 public class PhieuModel {
     private int id;
     private String tenSach, ngayTra, ngayMuon;
-    private int soluong, gia;
+    private int soluong, gia, trangThai;
     private String tenTV;
 
-    public PhieuModel(int id, String tenSach, String ngayTra, String ngayMuon, int soluong, int gia, String tenTV) {
+    public PhieuModel() {
+    }
+
+    public PhieuModel(int id, String tenSach, String ngayTra, String ngayMuon, int soluong, int gia, int trangThai, String tenTV) {
         this.id = id;
         this.tenSach = tenSach;
         this.ngayTra = ngayTra;
         this.ngayMuon = ngayMuon;
         this.soluong = soluong;
         this.gia = gia;
+        this.trangThai = trangThai;
         this.tenTV = tenTV;
-    }
-
-    public PhieuModel() {
     }
 
     public int getId() {
@@ -38,6 +41,7 @@ public class PhieuModel {
     public String getNgayTra() {
         return ngayTra;
     }
+
 
     public void setNgayTra(String ngayTra) {
         this.ngayTra = ngayTra;
@@ -65,6 +69,14 @@ public class PhieuModel {
 
     public void setGia(int gia) {
         this.gia = gia;
+    }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
     }
 
     public String getTenTV() {

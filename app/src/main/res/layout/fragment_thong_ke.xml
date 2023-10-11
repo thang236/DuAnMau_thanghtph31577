@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.thongke.ThongKeFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    android:overScrollMode="never"
+    android:background="@android:color/transparent"
+    android:scrollbars="none">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:overScrollMode="never"
+        android:gravity="top"
+        android:background="@android:color/transparent"
+        android:scrollbars="none">
 
-</FrameLayout>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/TabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+
+            android:layout_marginStart="10dp"
+            android:layout_marginVertical="10dp"
+
+            app:tabBackground="@drawable/custom_tablayout"
+            app:tabSelectedTextColor="@color/white"
+            app:tabGravity="center"
+            app:tabPadding="10dp"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorHeight="0dp"
+            app:tabMode="scrollable"
+            app:tabTextColor="@color/black"
+            app:tabUnboundedRipple="false" />
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/ViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="16dp"
+            />
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

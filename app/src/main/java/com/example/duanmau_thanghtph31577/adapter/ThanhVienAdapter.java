@@ -7,30 +7,42 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duanmau_thanghtph31577.databinding.DiaglogChucnang2Binding;
-import com.example.duanmau_thanghtph31577.databinding.DiaglogChucnangBinding;
 import com.example.duanmau_thanghtph31577.databinding.ItemThanhvienBinding;
+import com.example.duanmau_thanghtph31577.filters.FilterSearchCategory;
+import com.example.duanmau_thanghtph31577.filters.FilterSearchMember;
 import com.example.duanmau_thanghtph31577.model.ThanhVienModel;
 
 import java.util.ArrayList;
 
 public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.ViewHoder> {
     private  Context context;
-    private ArrayList<ThanhVienModel> arrayList;
+    public ArrayList<ThanhVienModel> arrayList ,list;
     private  ChucNanginterfaceThanhVien chucNanginterfaceThanhVien;
+    private FilterSearchMember filterSearchMember;
 
     public ThanhVienAdapter(Context context, ArrayList<ThanhVienModel> arrayList, ChucNanginterfaceThanhVien chucNanginterfaceThanhVien) {
         this.context = context;
         this.arrayList = arrayList;
         this.chucNanginterfaceThanhVien = chucNanginterfaceThanhVien;
+        this.list = arrayList;
+    }
+
+    public Filter getFilter() {
+        if (filterSearchMember == null){
+            filterSearchMember = new FilterSearchMember(list ,this);
+        }
+        return filterSearchMember;
     }
     public interface ChucNanginterfaceThanhVien {
         void update(int id);
         void delete(int id);
+        void goiClick(String sdt);
     }
 
     @NonNull
@@ -54,6 +66,13 @@ public class ThanhVienAdapter extends RecyclerView.Adapter<ThanhVienAdapter.View
                 openDiaglogChucNang(obj.getId());{
 
                 }
+            }
+        });
+        holder.binding.tvSdt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sdt ="0" + obj.getSoDT();
+                chucNanginterfaceThanhVien.goiClick(sdt);
             }
         });
 

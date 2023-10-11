@@ -195,6 +195,7 @@ public class ThemSachFragment extends Fragment {
         
         sachDAO.addSach(objNew);
         Toast.makeText(getContext(), "Thêm mới thành công", Toast.LENGTH_SHORT).show();
+        getActivity().getSupportFragmentManager().popBackStack();
     }
 
     private void diaglogChonLoaiSach() {

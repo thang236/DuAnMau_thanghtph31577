@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.duanmau_thanghtph31577.MainActivity;
+import com.example.duanmau_thanghtph31577.R;
 import com.example.duanmau_thanghtph31577.controller.AccountDao;
 import com.example.duanmau_thanghtph31577.databinding.FragmentLoginBinding;
+import com.example.duanmau_thanghtph31577.fragment.quanlyloaisach.XemChiTietLoaiSachFragment;
 
 
 public class LoginFragment extends Fragment {
@@ -45,6 +47,12 @@ public class LoginFragment extends Fragment {
                 validate();
             }
         });
+        binding.tvDangKi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new SignUpFragment()).commit();
+            }
+        });
     }
     private void validate() {
         userName = binding.edUsername.getText().toString().trim();
@@ -60,7 +68,14 @@ public class LoginFragment extends Fragment {
             return;
         }else if (accountDao.login(userName, Password) == 1){
             Toast.makeText(getContext(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getActivity(), MainActivity.class));
+            Bundle bundle = new Bundle();
+            bundle.putString("key", userName);
+
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
+
+
         }else {
             Toast.makeText(getContext(), "Sai tài khoản hoặc mật khẩu", Toast.LENGTH_SHORT).show();
         }

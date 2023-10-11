@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,22 +17,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.duanmau_thanghtph31577.R;
 import com.example.duanmau_thanghtph31577.databinding.DiaglogChucnangBinding;
 import com.example.duanmau_thanghtph31577.databinding.ItemSachBinding;
+import com.example.duanmau_thanghtph31577.filters.FilterSearchBook;
 import com.example.duanmau_thanghtph31577.model.SachModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<SachModel> arrayList;
+    public ArrayList<SachModel> arrayList, list;
     private ChucNanginterfaceSach chucNanginterfaceSach;
+    private FilterSearchBook filterSearchBook;
+
 
 
     public SachAdapter(Context context, ArrayList<SachModel> arrayList, ChucNanginterfaceSach chucNanginterfaceSach) {
         this.context = context;
         this.arrayList = arrayList;
         this.chucNanginterfaceSach = chucNanginterfaceSach;
+        this.list = arrayList;
     }
+    public Filter getFilter() {
+        if (filterSearchBook == null){
+            filterSearchBook = new FilterSearchBook(list ,this);
+        }
+        return filterSearchBook;
+    }
+
+
     public interface ChucNanginterfaceSach {
         void update(int id);
         void delete(int id);
@@ -75,6 +89,7 @@ public class SachAdapter extends RecyclerView.Adapter<SachAdapter.ViewHolder> {
                 openDialogChucNang(obj.getId());
             }
         });
+
 
 
 

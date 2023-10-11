@@ -7,29 +7,42 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.duanmau_thanghtph31577.databinding.DiaglogChucnang2Binding;
 import com.example.duanmau_thanghtph31577.databinding.ItemThuthuBinding;
+import com.example.duanmau_thanghtph31577.filters.FilterSearchMember;
+import com.example.duanmau_thanghtph31577.filters.FilterSearchStaff;
 import com.example.duanmau_thanghtph31577.model.ThuThuModel;
 
 import java.util.ArrayList;
 
 public class ThuThuAdapter extends RecyclerView.Adapter<ThuThuAdapter.ViewHoder> {
-     Context context;
-     ArrayList<ThuThuModel> arrayList;
-     ChucNanginterfaceThuThu chucNanginterfaceThuThu;
+     private Context context;
+     public ArrayList<ThuThuModel> arrayList, list;
+     private ChucNanginterfaceThuThu chucNanginterfaceThuThu;
+     private FilterSearchStaff filterSearchStaff;
 
     public ThuThuAdapter(Context context, ArrayList<ThuThuModel> arrayList, ChucNanginterfaceThuThu chucNanginterfaceThuThu) {
         this.context = context;
         this.arrayList = arrayList;
         this.chucNanginterfaceThuThu = chucNanginterfaceThuThu;
+        this.list = arrayList;
     }
+    public Filter getFilter() {
+        if (filterSearchStaff == null){
+            filterSearchStaff = new FilterSearchStaff(list ,this);
+        }
+        return filterSearchStaff;
+    }
+
     public interface ChucNanginterfaceThuThu {
         void update(int id);
         void delete(int id);
+        void goiClick(String sdt);
     }
 
 
@@ -53,6 +66,14 @@ public class ThuThuAdapter extends RecyclerView.Adapter<ThuThuAdapter.ViewHoder>
             @Override
             public void onClick(View v) {
                 openDiaglogChucNang(obj.getIdTT());
+            }
+        });
+
+        holder.binding.tvSdt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sdt = "0" + obj.getSoDT();
+                chucNanginterfaceThuThu.goiClick(sdt);
             }
         });
 

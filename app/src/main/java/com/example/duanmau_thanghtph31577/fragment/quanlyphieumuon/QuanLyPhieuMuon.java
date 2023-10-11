@@ -36,6 +36,7 @@ public class QuanLyPhieuMuon extends Fragment {
         binding.ViewPager.setAdapter(viewPage2Fragment);
 
 
+
         new TabLayoutMediator(binding.TabLayout, binding.ViewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
@@ -52,6 +53,7 @@ public class QuanLyPhieuMuon extends Fragment {
         }).attach();
 
         applyTabSpacing();
+        listener();
         return binding.getRoot();
     }
 
@@ -67,6 +69,15 @@ public class QuanLyPhieuMuon extends Fragment {
             params.setMarginEnd(spacing);
             tabView.requestLayout();
         }
+    }
+
+    private void listener() {
+        binding.btnAddNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ThemPhieuFragment()).addToBackStack(null).commit();
+            }
+        });
     }
 
 

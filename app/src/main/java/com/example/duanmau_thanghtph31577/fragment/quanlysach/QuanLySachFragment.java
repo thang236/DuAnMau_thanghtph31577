@@ -6,6 +6,9 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +65,28 @@ public class QuanLySachFragment extends Fragment implements SachAdapter.ChucNang
     }
 
     private void listener() {
+
+        binding.edTimKiemSach.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    adapter.getFilter().filter(s);
+
+                }catch (Exception e) {
+                    Log.d("TAG", "onTextChanged: loi search"+ e.getMessage());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         binding.btnAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
