@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.duanmau_thanghtph31577.controller.AccountDao;
 import com.example.duanmau_thanghtph31577.databinding.ActivityMainBinding;
+import com.example.duanmau_thanghtph31577.databinding.FragmentManHinhChinhBinding;
 import com.example.duanmau_thanghtph31577.fragment.ChangePasswordFragment;
 import com.example.duanmau_thanghtph31577.fragment.ManHinhChinhFragment;
 import com.example.duanmau_thanghtph31577.fragment.quanlyloaisach.QuanLyLoaiSachFragment;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     AccountDao dao;
     String name;
+    String TAG = "zzzzzzzzz";
 
 
     @Override
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         dao = new AccountDao(this);
+
+
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -48,11 +53,14 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
         setNavi();
+
         NavigationView navigationView = findViewById(R.id.navigationView);
         View headerView = navigationView.getHeaderView(0);
 
         TextView headerTextView = headerView.findViewById(R.id.tb_name);
-        headerTextView.setText("Xin chào" + name);
+        headerTextView.setText("Xin chào " + name);
+
+//        phanQuyen();
 
         setTitle("Trang chủ");
     }
@@ -66,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
         drawerToggle.setDrawerIndicatorEnabled(true);
         drawerToggle.syncState();
         binding.drawerLayout.addDrawerListener(drawerToggle);
+
+
         binding.navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -103,10 +113,45 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
+
                 binding.drawerLayout.close();
                 return true;
             }
         });
+        phanQuyen();
+    }
+    private void phanQuyen() {
+        int trangThai;
+        Intent intent = getIntent();
+        if (intent != null) {
+            Bundle bundle = intent.getExtras();
+
+            if (bundle != null) {
+                String userName = bundle.getString("key");
+                trangThai = dao.getVaiTroByUsername(userName);
+
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("trangThai", trangThai);
+                ManHinhChinhFragment fragment = new ManHinhChinhFragment();
+                fragment.setArguments(bundle1);
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment).commit();
+
+
+                Log.d(TAG, "phanQuyenMan: "+ trangThai);
+                if (trangThai == -1) {
+                    Toast.makeText(this, "Something is wrong", Toast.LENGTH_SHORT).show();
+                }else if (trangThai == 1){
+
+                    binding.navigationView.getMenu().findItem(R.id.thuThu).setVisible(false);
+                    binding.navigationView.getMenu().findItem(R.id.thongKe).setVisible(false);
+
+
+            }
+        }
+
+
+        }
+
     }
 
 }

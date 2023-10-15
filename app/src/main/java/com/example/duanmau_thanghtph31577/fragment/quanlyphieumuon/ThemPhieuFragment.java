@@ -104,18 +104,24 @@ public class ThemPhieuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 soLuongint = Integer.parseInt(binding.edSoLuong.getText().toString().trim());
-                soLuongint = soLuongint+1;
-                binding.edSoLuong.setText("" + soLuongint);
-                caculatorTongNgayMuon(ngayMuonint, ngayTraint);
+
+                    soLuongint = soLuongint + 1;
+                    binding.edSoLuong.setText("" + soLuongint);
+                    caculatorTongNgayMuon(ngayMuonint, ngayTraint);
+
+
             }
         });
         binding.btnTru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 soLuongint = Integer.parseInt(binding.edSoLuong.getText().toString().trim());
-                soLuongint = soLuongint-1;
-                binding.edSoLuong.setText("" + soLuongint);
-                caculatorTongNgayMuon(ngayMuonint, ngayTraint);
+                if (soLuongint>1) {
+                    soLuongint = soLuongint - 1;
+                    binding.edSoLuong.setText("" + soLuongint);
+                    caculatorTongNgayMuon(ngayMuonint, ngayTraint);
+                }
+
             }
         });
     }

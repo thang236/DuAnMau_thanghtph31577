@@ -35,17 +35,13 @@ public class Top10Fragment extends Fragment {
         binding = FragmentTop10Binding.inflate(inflater, container, false);
         dao = new SachDAO(getContext());
         listener();
-        onRefresh();
 
 
 
         // Inflate the layout for this fragment
         return binding.getRoot();
     }
-    public void onRefresh() {
-        showTop10();
-        binding.swiperefreshlayout.setRefreshing(false);
-    }
+
 
     private void  listener() {
 

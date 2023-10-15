@@ -75,6 +75,7 @@ public class DoanhThuFragment extends Fragment {
                     NumberFormat nf = NumberFormat.getCurrencyInstance(locale);
                     String tienfomat = nf.format(doanhthu);
                     Log.e("azzz", "onClick: "+tienfomat );
+
                     binding.tvHienthikq.setText( tienfomat);
                 }
             });

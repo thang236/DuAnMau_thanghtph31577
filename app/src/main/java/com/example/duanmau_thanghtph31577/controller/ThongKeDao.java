@@ -3,6 +3,7 @@ package com.example.duanmau_thanghtph31577.controller;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.duanmau_thanghtph31577.database.DBHelper;
 
@@ -18,18 +19,24 @@ public class ThongKeDao {
 
     public double thongKeDoanhThuTheoThoiGian(String tungay, String dengay) {
         double totalRevenue = 0.0;
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        try {
 
-        String query = "SELECT SUM(gia) FROM PhieuMuon WHERE ngayTra BETWEEN ? AND ?";
-        Cursor cursor = db.rawQuery(query, new String[]{tungay, dengay});
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        if (cursor != null && cursor.moveToFirst()) {
-            totalRevenue = cursor.getDouble(0);
+            String query = "SELECT SUM(gia) FROM PhieuMuon WHERE ngayTra BETWEEN ? AND ? ;";
+            Cursor cursor = db.rawQuery(query, new String[]{tungay, dengay});
+
+            if (cursor != null && cursor.moveToFirst()) {
+                totalRevenue = cursor.getDouble(0);
+            }
+
+            if (cursor != null) {
+                cursor.close();
+            }
+        }catch (Exception e) {
+            Log.d("TAG", "thongKeDoanhThuTheoThoiGian: "+ e.getMessage());
         }
 
-        if (cursor != null) {
-            cursor.close();
-        }
 
         return totalRevenue;
     }

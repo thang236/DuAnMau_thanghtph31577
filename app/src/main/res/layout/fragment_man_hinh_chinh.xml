@@ -1,14 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.ManHinhChinhFragment">
+    tools:context=".fragment.ManHinhChinhFragment"
+    android:gravity="center">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="Chào mừng đến với thư viện"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@id/tv_loaiSach"
+        android:textStyle="bold"
+        />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/tv_loaiSach"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_width="140dp"
+        android:layout_height="134dp"
+        android:gravity="center"
+        android:drawableTop="@drawable/ic_list"
+        android:text="Qua lý loại sách"
+        android:padding="30dp"
+        android:drawablePadding="10dp"
+        android:background="@drawable/custom_bong_background"
+        />
+
+    <TextView
+        android:id="@+id/tv_sach"
+        android:layout_width="140dp"
+        android:layout_height="134dp"
+        android:gravity="center"
+        android:drawableTop="@drawable/ic_book"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="40dp"
+        android:text="Qua lý sách"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:padding="30dp"
+        android:drawablePadding="7dp"
+        android:background="@drawable/custom_bong_background"
+        />
+
+    <TextView
+        android:id="@+id/tv_thanhVien"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_width="140dp"
+        android:layout_height="134dp"
+        android:gravity="center"
+        android:drawableTop="@drawable/ic_people"
+        android:layout_below="@id/tv_loaiSach"
+        android:text="Qua lý thành viên"
+        android:padding="30dp"
+        android:drawablePadding="10dp"
+        android:background="@drawable/custom_bong_background"
+        />
+
+    <TextView
+        android:id="@+id/tv_pM"
+        android:layout_width="140dp"
+        android:layout_height="134dp"
+        android:gravity="center"
+        android:drawableTop="@drawable/ic_phieu"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="40dp"
+        android:text="Qua lý phiếu mượn"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_below="@id/tv_sach"
+        android:padding="30dp"
+        android:drawablePadding="10dp"
+        android:background="@drawable/custom_bong_background"
+        />
+
+    <TextView
+        android:id="@+id/tv_thuThu"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_width="140dp"
+        android:layout_height="134dp"
+        android:gravity="center"
+        android:drawableTop="@drawable/ic_thuthu"
+        android:layout_below="@id/tv_thanhVien"
+        android:text="Qua lý thủ thư"
+        android:padding="30dp"
+        android:drawablePadding="10dp"
+        android:background="@drawable/custom_bong_background"
+        />
+
+    <TextView
+        android:id="@+id/tv_thongKe"
+        android:layout_width="140dp"
+        android:layout_height="134dp"
+        android:gravity="center"
+        android:drawableTop="@drawable/ic_bar_chart"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="40dp"
+        android:text="Thống kê"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_below="@id/tv_pM"
+        android:padding="30dp"
+        android:drawablePadding="10dp"
+        android:background="@drawable/custom_bong_background"
+        />
+
+
+
+
+</RelativeLayout>

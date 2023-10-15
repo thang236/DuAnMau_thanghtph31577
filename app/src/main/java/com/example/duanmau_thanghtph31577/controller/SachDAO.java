@@ -165,37 +165,74 @@ public class SachDAO {
         return loaiSachList;
     }
 
-    public ArrayList<SachModel> getTop10MostBorrowedBooks() {
-        ArrayList<SachModel> top10Books = new ArrayList<>();
+//    public ArrayList<SachModel> getTop10MostBorrowedBooks() {
+//        ArrayList<SachModel> top10Books = new ArrayList<>();
+//
+//        SQLiteDatabase db = dbHelper.getReadableDatabase();
+//        String query = "SELECT * FROM Sach ORDER BY soLuong DESC LIMIT 10";
+//        Cursor cursor = db.rawQuery(query, null);
+//
+//        if (cursor != null) {
+//            if (cursor.moveToFirst()) {
+//                do {
+//                    // Lấy thông tin từ cursor và tạo đối tượng SachModel
+//                    @SuppressLint("Range") int idSach = cursor.getInt(cursor.getColumnIndex("idSach"));
+//                    @SuppressLint("Range") String tenSach = cursor.getString(cursor.getColumnIndex("tenSach"));
+//                    @SuppressLint("Range") int soLuong = cursor.getInt(cursor.getColumnIndex("soLuong"));
+//                    @SuppressLint("Range") int gia = cursor.getInt(cursor.getColumnIndex("gia"));
+//                    @SuppressLint("Range") String loaiSach = cursor.getString(cursor.getColumnIndex("loaiSach"));
+//                    @SuppressLint("Range") String tacGia = cursor.getString(cursor.getColumnIndex("tacGia"));
+//                    @SuppressLint("Range") String moTa = cursor.getString(cursor.getColumnIndex("moTa"));
+//                    @SuppressLint("Range") String imgSach = cursor.getString(cursor.getColumnIndex("imgSach"));
+//                    @SuppressLint("Range") int trangThai = cursor.getInt(cursor.getColumnIndex("trangThai"));
+//
+//                    SachModel sach = new SachModel(idSach, tenSach, soLuong, gia, loaiSach, tacGia, moTa, imgSach, trangThai);
+//                    top10Books.add(sach);
+//                } while (cursor.moveToNext());
+//            }
+//            cursor.close();
+//        }
+//
+//        db.close();
+//        return top10Books;
+//    }
+public ArrayList<SachModel> getTop10MostBorrowedBooks() {
+    ArrayList<SachModel> top10Books = new ArrayList<>();
 
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        String query = "SELECT * FROM Sach ORDER BY soLuong DESC LIMIT 10";
-        Cursor cursor = db.rawQuery(query, null);
+    SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                do {
-                    // Lấy thông tin từ cursor và tạo đối tượng SachModel
-                    @SuppressLint("Range") int idSach = cursor.getInt(cursor.getColumnIndex("idSach"));
-                    @SuppressLint("Range") String tenSach = cursor.getString(cursor.getColumnIndex("tenSach"));
-                    @SuppressLint("Range") int soLuong = cursor.getInt(cursor.getColumnIndex("soLuong"));
-                    @SuppressLint("Range") int gia = cursor.getInt(cursor.getColumnIndex("gia"));
-                    @SuppressLint("Range") String loaiSach = cursor.getString(cursor.getColumnIndex("loaiSach"));
-                    @SuppressLint("Range") String tacGia = cursor.getString(cursor.getColumnIndex("tacGia"));
-                    @SuppressLint("Range") String moTa = cursor.getString(cursor.getColumnIndex("moTa"));
-                    @SuppressLint("Range") String imgSach = cursor.getString(cursor.getColumnIndex("imgSach"));
-                    @SuppressLint("Range") int trangThai = cursor.getInt(cursor.getColumnIndex("trangThai"));
+    // Truy vấn cơ sở dữ liệu để lấy thông tin về cuốn sách được mượn nhiều nhất
+    String query = "SELECT Sach.*, COUNT(PhieuMuon.tenSach) AS totalBorrowed " +
+            "FROM Sach " +
+            "LEFT JOIN PhieuMuon ON Sach.tenSach = PhieuMuon.tenSach " +
+            "GROUP BY Sach.tenSach " +
+            "ORDER BY totalBorrowed DESC LIMIT 10";
+    Cursor cursor = db.rawQuery(query, null);
 
-                    SachModel sach = new SachModel(idSach, tenSach, soLuong, gia, loaiSach, tacGia, moTa, imgSach, trangThai);
-                    top10Books.add(sach);
-                } while (cursor.moveToNext());
-            }
-            cursor.close();
-        }
+    if (cursor.moveToFirst()) {
+        do {
+            @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex("idSach"));
+            @SuppressLint("Range") String tenSach = cursor.getString(cursor.getColumnIndex("tenSach"));
+            @SuppressLint("Range") int soLuong = cursor.getInt(cursor.getColumnIndex("soLuong"));
+            @SuppressLint("Range") int gia = cursor.getInt(cursor.getColumnIndex("gia"));
+            @SuppressLint("Range") String loaiSach = cursor.getString(cursor.getColumnIndex("loaiSach"));
+            @SuppressLint("Range") String tacGia = cursor.getString(cursor.getColumnIndex("tacGia"));
+            @SuppressLint("Range") String moTa = cursor.getString(cursor.getColumnIndex("moTa"));
+            @SuppressLint("Range") String imgSach = cursor.getString(cursor.getColumnIndex("imgSach"));
+            @SuppressLint("Range") int trangThai = cursor.getInt(cursor.getColumnIndex("trangThai"));
 
-        db.close();
-        return top10Books;
+            SachModel book = new SachModel(id, tenSach, soLuong, gia, loaiSach, tacGia, moTa, imgSach, trangThai);
+            top10Books.add(book);
+        } while (cursor.moveToNext());
     }
+
+    cursor.close();
+    db.close();
+
+    return top10Books;
+}
+
+
 
 }
 

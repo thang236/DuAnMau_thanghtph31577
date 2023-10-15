@@ -102,6 +102,29 @@ public class AccountDao {
         return name;
     }
 
+    @SuppressLint("Range")
+    public int getVaiTroByUsername(String username) {
+        int vaiTro = -1; // Giá trị mặc định nếu không tìm thấy tài khoản
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String query = "SELECT vaiTro FROM Account WHERE username = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{username});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            vaiTro = cursor.getInt(cursor.getColumnIndex("vaiTro"));
+        }
+
+        if (cursor != null) {
+            cursor.close();
+        }
+
+        return vaiTro;
+    }
+
+
+
+
 
 
 
