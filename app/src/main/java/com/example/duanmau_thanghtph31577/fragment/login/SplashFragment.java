@@ -11,11 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.duanmau_thanghtph31577.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SplashFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class SplashFragment extends Fragment {
 
 
